@@ -41,7 +41,8 @@ def train(cfg: DeepSpeechConfig):
 
     trainer = hydra.utils.instantiate(
         config=cfg.trainer,
-        replace_sampler_ddp=False,
+        use_distributed_sampler=False,
+        # replace_sampler_ddp=False,
         callbacks=[checkpoint_callback] if cfg.trainer.enable_checkpointing else None,
     )
     trainer.fit(model, data_loader)
