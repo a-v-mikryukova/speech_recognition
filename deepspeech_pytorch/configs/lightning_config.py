@@ -24,6 +24,7 @@ class ModelCheckpointConf:
 
 @dataclass
 class TrainerConf:
+    accelerator: str = "auto"
     _target_: str = "pytorch_lightning.trainer.Trainer"
     logger: Any = (
         True  # Union[LightningLoggerBase, Iterable[LightningLoggerBase], bool]
@@ -33,12 +34,10 @@ class TrainerConf:
     gradient_clip_val: float = 0
     callbacks: Any = None
     num_nodes: int = 1
-    num_processes: int = 1
-    gpus: Any = None  # Union[int, str, List[int], NoneType]
-    auto_select_gpus: bool = False
-    tpu_cores: Any = None  # Union[int, str, List[int], NoneType]
+    devices: int = 1
+    # tpu_cores: Any = None  # Union[int, str, List[int], NoneType]
     overfit_batches: Any = 0.0  # Union[int, float]
-    track_grad_norm: Any = -1  # Union[int, float, str]
+    # track_grad_norm: Any = -1  # Union[int, float, str]
     check_val_every_n_epoch: int = 1
     fast_dev_run: Any = False  # Union[int, bool]
     accumulate_grad_batches: Any = 1  # Union[int, Dict[int, int], List[list]]
@@ -49,30 +48,29 @@ class TrainerConf:
     limit_test_batches: Any = 1.0  # Union[int, float]
     val_check_interval: Any = 1.0  # Union[int, float]
     log_every_n_steps: int = 50
-    accelerator: Any = None  # Union[str, Accelerator, NoneType]
     sync_batchnorm: bool = False
     precision: int = 32
-    weights_save_path: Optional[str] = None
+    # weights_save_path: Optional[str] = None
     num_sanity_val_steps: int = 2
-    resume_from_checkpoint: Any = None  # Union[str, Path, NoneType]
+    # resume_from_checkpoint: Any = None  # Union[str, Path, NoneType]
     profiler: Any = None  # Union[BaseProfiler, bool, str, NoneType]
     benchmark: bool = False
     deterministic: bool = False
-    auto_lr_find: Any = False  # Union[bool, str]
-    replace_sampler_ddp: bool = True
-    detect_anomaly: bool = False
-    auto_scale_batch_size: Any = False  # Union[str, bool]
-    plugins: Any = None  # Union[str, list, NoneType]
-    amp_backend: str = "native"
-    amp_level: Any = None
-    move_metrics_to_cpu: bool = False
-    gradient_clip_algorithm: Optional[str] = None
-    devices: Any = None
-    ipus: Optional[int] = None
-    enable_progress_bar: bool = True
-    max_time: Optional[str] = None
-    limit_predict_batches: float = 1.0
+    # auto_lr_find: Any = False  # Union[bool, str]
+    # replace_sampler_ddp: bool = True
+    # detect_anomaly: bool = False
+    # auto_scale_batch_size: Any = False  # Union[str, bool]
+    # plugins: Any = None  # Union[str, list, NoneType]
+    # amp_backend: str = "native"
+    # amp_level: Any = None
+    # move_metrics_to_cpu: bool = False
+    # gradient_clip_algorithm: Optional[str] = None
+    # devices: Any = None
+    # ipus: Optional[int] = None
+    # enable_progress_bar: bool = True
+    # max_time: Optional[str] = None
+    # limit_predict_batches: float = 1.0
     strategy: Optional[str] = None
-    enable_model_summary: bool = True
-    reload_dataloaders_every_n_epochs: int = 0
-    multiple_trainloader_mode: str = "max_size_cycle"
+    # enable_model_summary: bool = True
+    # reload_dataloaders_every_n_epochs: int = 0
+    # multiple_trainloader_mode: str = "max_size_cycle"
